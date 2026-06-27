@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { IonContent, IonSegment, IonSegmentButton, IonLabel, IonIcon, IonSkeletonText } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -12,13 +12,13 @@ import { carSportOutline, calendarOutline, listCircleOutline } from 'ionicons/ic
   selector: 'app-my-bookings',
   template: `
 <ion-content [fullscreen]="true" class="bookings-content">
-  <div class="page-header"><h1>حجوزاتي</h1></div>
+  <div class="page-header"><h1>Ø­Ø¬ÙˆØ²Ø§ØªÙŠ</h1></div>
 
   <ion-segment [(ngModel)]="activeTab" (ionChange)="loadBookings()" mode="md" class="status-segment">
-    <ion-segment-button value="active"><ion-label>نشطة</ion-label></ion-segment-button>
-    <ion-segment-button value="pending"><ion-label>قادمة</ion-label></ion-segment-button>
-    <ion-segment-button value="completed"><ion-label>منتهية</ion-label></ion-segment-button>
-    <ion-segment-button value="cancelled"><ion-label>ملغاة</ion-label></ion-segment-button>
+    <ion-segment-button value="active"><ion-label>Ù†Ø´Ø·Ø©</ion-label></ion-segment-button>
+    <ion-segment-button value="pending"><ion-label>Ù‚Ø§Ø¯Ù…Ø©</ion-label></ion-segment-button>
+    <ion-segment-button value="completed"><ion-label>Ù…Ù†ØªÙ‡ÙŠØ©</ion-label></ion-segment-button>
+    <ion-segment-button value="cancelled"><ion-label>Ù…Ù„ØºØ§Ø©</ion-label></ion-segment-button>
   </ion-segment>
 
   <div class="bookings-list" *ngIf="!loading">
@@ -30,15 +30,15 @@ import { carSportOutline, calendarOutline, listCircleOutline } from 'ionicons/ic
         </div>
         <div class="booking-info">
           <h4>{{ b.car?.make }} {{ b.car?.model }}</h4>
-          <p><ion-icon name="calendar-outline"></ion-icon>{{ b.start_date | date:'dd/MM/yyyy' }} → {{ b.end_date | date:'dd/MM/yyyy' }}</p>
+          <p><ion-icon name="calendar-outline"></ion-icon>{{ b.start_date | date:'dd/MM/yyyy' }} â†’ {{ b.end_date | date:'dd/MM/yyyy' }}</p>
         </div>
         <span class="status" [class]="b.status">{{ statusLabel(b.status) }}</span>
       </div>
       <div class="booking-footer">
-        <span class="price">{{ b.total_amount | number }} <small>ر.س</small></span>
+        <span class="price">{{ b.total_amount | number }} <small>Ø±.Ø³</small></span>
         <div class="btns">
-          <button *ngIf="b.status === 'active'" class="action-btn primary" (click)="extend(b)">تمديد</button>
-          <button *ngIf="b.status !== 'cancelled' && b.status !== 'completed'" class="action-btn danger" (click)="cancel(b)">إلغاء</button>
+          <button *ngIf="b.status === 'active'" class="action-btn primary" (click)="extend(b)">ØªÙ…Ø¯ÙŠØ¯</button>
+          <button *ngIf="b.status !== 'cancelled' && b.status !== 'completed'" class="action-btn danger" (click)="cancel(b)">Ø¥Ù„ØºØ§Ø¡</button>
         </div>
       </div>
     </div>
@@ -126,10 +126,11 @@ export class MyBookingsPage implements OnInit {
   }
 
   statusLabel(status: string) {
-    const map: any = { active: 'نشط', pending: 'قادم', completed: 'منتهي', cancelled: 'ملغى' };
+    const map: any = { active: 'Ù†Ø´Ø·', pending: 'Ù‚Ø§Ø¯Ù…', completed: 'Ù…Ù†ØªÙ‡ÙŠ', cancelled: 'Ù…Ù„ØºÙ‰' };
     return map[status] || status;
   }
 
   async cancel(b: Booking) { await this.bookingService.cancelBooking(b.id); await this.loadBookings(); }
   async extend(b: Booking) {}
 }
+

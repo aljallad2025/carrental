@@ -1,4 +1,4 @@
-<ion-content [fullscreen]="true" class="login-content">
+﻿<ion-content [fullscreen]="true" class="login-content">
 
   <div class="hero-section">
     <div class="hero-logo">
@@ -10,23 +10,23 @@
   </div>
 
   <div class="sheet">
-    <h2 class="sheet-title">تسجيل الدخول</h2>
-    <p class="sheet-subtitle">سجّل دخولك وابدأ رحلتك</p>
+    <h2 class="sheet-title">ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„</h2>
+    <p class="sheet-subtitle">Ø³Ø¬Ù‘Ù„ Ø¯Ø®ÙˆÙ„Ùƒ ÙˆØ§Ø¨Ø¯Ø£ Ø±Ø­Ù„ØªÙƒ</p>
 
     <ion-segment [(ngModel)]="loginType" mode="md" class="type-segment">
       <ion-segment-button value="email">
         <ion-icon name="mail-outline"></ion-icon>
-        <ion-label>بريد إلكتروني</ion-label>
+        <ion-label>Ø¨Ø±ÙŠØ¯ Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ</ion-label>
       </ion-segment-button>
       <ion-segment-button value="phone">
         <ion-icon name="phone-portrait-outline"></ion-icon>
-        <ion-label>رقم الهاتف</ion-label>
+        <ion-label>Ø±Ù‚Ù… Ø§Ù„Ù‡Ø§ØªÙ</ion-label>
       </ion-segment-button>
     </ion-segment>
 
     <div class="input-group" *ngIf="loginType === 'email'">
       <ion-icon name="mail-outline"></ion-icon>
-      <ion-input [(ngModel)]="email" type="email" placeholder="البريد الإلكتروني" dir="ltr"></ion-input>
+      <ion-input [(ngModel)]="email" type="email" placeholder="Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ" dir="ltr"></ion-input>
     </div>
     <div class="input-group" *ngIf="loginType === 'phone'">
       <ion-icon name="phone-portrait-outline"></ion-icon>
@@ -35,15 +35,15 @@
 
     <div class="input-group">
       <ion-icon name="lock-closed-outline"></ion-icon>
-      <ion-input [(ngModel)]="password" [type]="showPassword ? 'text' : 'password'" placeholder="كلمة المرور" dir="ltr"></ion-input>
-      <ion-icon [name]="showPassword ? 'eye-outline' : 'eye-off-outline'" (click)="showPassword = !showPassword" class="eye-icon"></ion-icon>
+      <ion-input [(ngModel)]="كلمة المرور" [type]="showكلمة المرور ? 'text' : 'كلمة المرور'" placeholder="ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ±" dir="ltr"></ion-input>
+      <ion-icon [name]="showكلمة المرور ? 'eye-outline' : 'eye-off-outline'" (click)="showكلمة المرور = !showكلمة المرور" class="eye-icon"></ion-icon>
     </div>
 
-    <div class="forgot-link" (click)="goToForgot()">نسيت كلمة المرور؟</div>
+    <div class="forgot-link" (click)="goToForgot()">Ù†Ø³ÙŠØª ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ±ØŸ</div>
 
     <ion-button expand="block" (click)="login()" [disabled]="loading" class="login-btn">
       <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
-      <span *ngIf="!loading">تسجيل الدخول</span>
+      <span *ngIf="!loading">ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„</span>
       <ion-icon *ngIf="!loading" name="arrow-forward-outline" slot="end"></ion-icon>
     </ion-button>
 
@@ -55,7 +55,8 @@
     </button>
 
     <div class="register-link">
-      ليس لديك حساب؟ <span (click)="goToRegister()">سجّل الآن</span>
+      Ù„ÙŠØ³ Ù„Ø¯ÙŠÙƒ Ø­Ø³Ø§Ø¨ØŸ <span (click)="goToRegister()">Ø³Ø¬Ù‘Ù„ Ø§Ù„Ø¢Ù†</span>
     </div>
   </div>
 </ion-content>
+

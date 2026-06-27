@@ -1,20 +1,20 @@
-<ion-content [fullscreen]="true" class="list-content">
+﻿<ion-content [fullscreen]="true" class="list-content">
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
   <div class="page-header">
-    <h1>سيارات للإيجار</h1>
+    <h1>Ø³ÙŠØ§Ø±Ø§Øª Ù„Ù„Ø¥ÙŠØ¬Ø§Ø±</h1>
     <button class="filter-btn"><ion-icon name="filter-outline"></ion-icon></button>
   </div>
 
   <div class="search-bar">
     <ion-icon name="search-outline"></ion-icon>
-    <input type="text" placeholder="ابحث عن سيارة..." [(ngModel)]="searchQuery" (input)="loadCars()" />
+    <input type="text" placeholder="Ø§Ø¨Ø­Ø« Ø¹Ù† Ø³ÙŠØ§Ø±Ø©..." [(ngModel)]="searchQuery" (input)="loadCars()" />
   </div>
 
   <div class="results-row" *ngIf="!loading">
-    <span class="count">{{ cars.length }} سيارة متاحة</span>
+    <span class="count">{{ cars.length }} Ø³ÙŠØ§Ø±Ø© Ù…ØªØ§Ø­Ø©</span>
     <div class="view-toggle">
       <button [class.active]="viewMode==='grid'" (click)="viewMode='grid'"><ion-icon name="grid-outline"></ion-icon></button>
       <button [class.active]="viewMode==='list'" (click)="viewMode='list'"><ion-icon name="list-outline"></ion-icon></button>
@@ -42,18 +42,18 @@
           <ion-icon [name]="isFavorite(car.id) ? 'heart' : 'heart-outline'" [class.is-fav]="isFavorite(car.id)"></ion-icon>
         </button>
         <span class="avail-badge" [class.unavail]="car.status !== 'available'">
-          {{ car.status === 'available' ? 'متاح' : 'محجوز' }}
+          {{ car.status === 'available' ? 'Ù…ØªØ§Ø­' : 'Ù…Ø­Ø¬ÙˆØ²' }}
         </span>
       </div>
       <div class="car-body">
         <h4>{{ car.make }} {{ car.model }}</h4>
-        <p class="car-year">{{ car.year }} · {{ car.transmission === 'automatic' ? 'أوتوماتيك' : 'يدوي' }}</p>
+        <p class="car-year">{{ car.year }} Â· {{ car.transmission === 'automatic' ? 'Ø£ÙˆØªÙˆÙ…Ø§ØªÙŠÙƒ' : 'ÙŠØ¯ÙˆÙŠ' }}</p>
         <div class="car-specs">
-          <span>👤 {{ car.seats }}</span>
-          <span>⭐ {{ car.rating || 0 }}</span>
+          <span>ðŸ‘¤ {{ car.seats }}</span>
+          <span>â­ {{ car.rating || 0 }}</span>
         </div>
         <div class="car-footer">
-          <div class="car-price"><strong>{{ car.daily_rate }}</strong> ر.س/يوم</div>
+          <div class="car-price"><strong>{{ car.daily_rate }}</strong> Ø±.Ø³/ÙŠÙˆÙ…</div>
         </div>
       </div>
     </div>
@@ -72,8 +72,9 @@
 
   <div class="empty-state" *ngIf="!loading && !cars.length">
     <ion-icon name="car-outline"></ion-icon>
-    <p>لا توجد سيارات متاحة</p>
+    <p>Ù„Ø§ ØªÙˆØ¬Ø¯ Ø³ÙŠØ§Ø±Ø§Øª Ù…ØªØ§Ø­Ø©</p>
   </div>
 
   <div style="height: 90px;"></div>
 </ion-content>
+

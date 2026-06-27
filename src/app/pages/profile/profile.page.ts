@@ -1,17 +1,17 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonButton, IonIcon, IonToggle, ToastController } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { addIcons } from 'ionicons';
-import { personCircleOutline, createOutline, documentTextOutline, locationOutline, cardOutline, chatbubbleEllipsesOutline, heartOutline, moonOutline, notificationsOutline, chevronForwardOutline, logOutOutline } from 'ionicons/icons';
+import { personCircleOutline, createOutline, documentTextOutline, locationOutline, cardOutline, chatbubbleEllipsesOutline, heartOutline, moonOutline, الإشعاراتOutline, chevronForwardOutline, logOutOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-profile',
   template: `
 <ion-content [fullscreen]="true" class="profile-content">
-  <div class="page-header"><h1>حسابي</h1></div>
+  <div class="page-header"><h1>Ø­Ø³Ø§Ø¨ÙŠ</h1></div>
 
   <div class="profile-card">
     <div class="avatar"><ion-icon name="person-circle-outline"></ion-icon></div>
@@ -30,19 +30,19 @@ import { personCircleOutline, createOutline, documentTextOutline, locationOutlin
 
   <div class="toggle-section">
     <div class="toggle-item">
-      <span><ion-icon name="moon-outline"></ion-icon>الوضع الداكن</span>
+      <span><ion-icon name="moon-outline"></ion-icon>Ø§Ù„ÙˆØ¶Ø¹ Ø§Ù„Ø¯Ø§ÙƒÙ†</span>
       <ion-toggle [(ngModel)]="darkMode" (ionChange)="toggleDarkMode()"></ion-toggle>
     </div>
     <div class="toggle-item">
-      <span><ion-icon name="notifications-outline"></ion-iconالإشعارات</span>
-      <ion-toggle [(ngModel)]="notifications"></ion-toggle>
+      <span><ion-icon name="الإشعارات-outline"></ion-iconØ§Ù„Ø¥Ø´Ø¹Ø§Ø±Ø§Øª</span>
+      <ion-toggle [(ngModel)]="الإشعارات"></ion-toggle>
     </div>
   </div>
 
   <div class="logout-section">
     <button class="logout-btn" (click)="logout()">
       <ion-icon name="log-out-outline"></ion-icon>
-      تسجيل الخروج
+      ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø®Ø±ÙˆØ¬
     </button>
   </div>
 
@@ -95,19 +95,19 @@ import { personCircleOutline, createOutline, documentTextOutline, locationOutlin
 })
 export class ProfilePage {
   darkMode = true;
-  notifications = true;
+  الإشعارات = true;
 
   menuItems = [
-    { icon: 'create-outline', label: 'تعديل البيانات', action: () => {} },
-    { icon: 'document-text-outline', label: 'وثائقي', action: () => {} },
-    { icon: 'location-outline', label: 'عناويني', action: () => {} },
-    { icon: 'card-outline', label: 'مدفوعاتي', action: () => this.router.navigate(['/payments']) },
+    { icon: 'create-outline', label: 'ØªØ¹Ø¯ÙŠÙ„ Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª', action: () => {} },
+    { icon: 'document-text-outline', label: 'ÙˆØ«Ø§Ø¦Ù‚ÙŠ', action: () => {} },
+    { icon: 'location-outline', label: 'Ø¹Ù†Ø§ÙˆÙŠÙ†ÙŠ', action: () => {} },
+    { icon: 'card-outline', label: 'Ù…Ø¯ÙÙˆØ¹Ø§ØªÙŠ', action: () => this.router.navigate(['/payments']) },
     { icon: 'chatbubble-ellipses-outline', label: 'Contact Us', action: () => this.router.navigate(['/chat']) },
-    { icon: 'heart-outline', label: 'المفضلة', action: () => this.router.navigate(['/favorites']) },
+    { icon: 'heart-outline', label: 'Ø§Ù„Ù…ÙØ¶Ù„Ø©', action: () => this.router.navigate(['/favorites']) },
   ];
 
   constructor(public auth: AuthService, private router: Router, private toast: ToastController) {
-    addIcons({ personCircleOutline, createOutline, documentTextOutline, locationOutline, cardOutline, chatbubbleEllipsesOutline, heartOutline, moonOutline, notificationsOutline, chevronForwardOutline, logOutOutline });
+    addIcons({ personCircleOutline, createOutline, documentTextOutline, locationOutline, cardOutline, chatbubbleEllipsesOutline, heartOutline, moonOutline, الإشعاراتOutline, chevronForwardOutline, logOutOutline });
   }
 
   get user() { return this.auth.currentUser(); }
@@ -119,3 +119,4 @@ export class ProfilePage {
     this.router.navigate(['/auth/login']);
   }
 }
+
