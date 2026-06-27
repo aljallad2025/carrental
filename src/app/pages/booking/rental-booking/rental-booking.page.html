@@ -1,0 +1,58 @@
+<ion-header class="ion-no-border"><ion-toolbar class="speed-toolbar"><ion-buttons slot="start"><ion-back-button text="" defaultHref="/tabs/home"></ion-back-button></ion-buttons><ion-title>حجز إيجار</ion-title></ion-toolbar></ion-header>
+<ion-content [fullscreen]="true" class="booking-content">
+  <div class="booking-wrapper" *ngIf="car">
+
+    <div class="car-summary">
+      <div class="car-thumb">
+        <img *ngIf="hasValidImage()" [src]="car.image_url" [alt]="car.make" />
+        <div *ngIf="!hasValidImage()" class="car-fallback"><ion-icon name="car-sport-outline"></ion-icon></div>
+      </div>
+      <div><h3>{{ car.make }} {{ car.model }}</h3><p><strong>{{ car.daily_rate }}</strong> ر.س / يوم</p></div>
+    </div>
+
+    <div class="section-card">
+      <h4><ion-icon name="calendar-outline"></ion-icon>Rental Dates</h4>
+      <div class="date-inputs">
+        <div class="date-input"><label>تاريخ الاستلام</label><input type="date" [(ngModel)]="pickupDate" /></div>
+        <div class="date-input"><label>تاريخ التسليم</label><input type="date" [(ngModel)]="returnDate" /></div>
+      </div>
+      <div class="أيام-badge" *ngIf="totalDays > 0">{{ totalDays }} أيام</div>
+    </div>
+
+    <div class="section-card">
+      <h4><ion-icon name="location-outline"></ion-icon>Locations</h4>
+      <input class="text-input" placeholder="موقع الاستلام" [(ngModel)]="pickupLocation" />
+      <input class="text-input" placeholder="موقع التسليم" [(ngModel)]="returnLocation" style="margin-top:10px;" />
+    </div>
+
+    <div class="section-card">
+      <h4><ion-icon name="add-circle-outline"></ion-icon>الإضافات</h4>
+      <div class="extra-item" *ngFor="let extra of extras" [class.selected]="extra.selected" (click)="extra.selected = !extra.selected">
+        <ion-icon [name]="extra.icon" class="extra-icon"></ion-icon>
+        <span class="extra-name">{{ extra.name }}</span>
+        <span class="extra-price">{{ extra.price }} ر.س/يوم</span>
+        <ion-icon [name]="extra.selected ? 'checkmark-circle' : 'square-outline'" class="check"></ion-icon>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <h4><ion-icon name="card-outline"></ion-icon>طريقة الدفع</h4>
+      <div class="payment-options">
+        <div class="pay-option" [class.active]="paymentMethod==='cash'" (click)="paymentMethod='cash'"><ion-icon name="cash-outline"></ion-icon>كاش</div>
+        <div class="pay-option" [class.active]="paymentMethod==='card'" (click)="paymentMethod='card'"><ion-icon name="card-outline"></ion-icon>بطاقة</div>
+        <div class="pay-option" [class.active]="paymentMethod==='transfer'" (click)="paymentMethod='transfer'"><ion-icon name="business-outline"></ion-icon>تحويل</div>
+      </div>
+    </div>
+
+    <div class="price-summary" *ngIf="totalDays > 0">
+      <div class="price-row"><span>إيجار ({{ totalDays }} × {{ car.daily_rate }})</span><span>{{ car.daily_rate! * totalDays }} ر.س</span></div>
+      <div class="price-row" *ngFor="let e of selectedExtras"><span>{{ e.name }}</span><span>{{ e.price * totalDays }} ر.س</span></div>
+      <div class="price-total"><span>المجموع</span><span>{{ totalPrice }} ر.س</span></div>
+    </div>
+
+    <ion-button expand="block" (click)="confirm()" [disabled]="loading || !pickupDate || !returnDate" class="confirm-btn">
+      {{ loading ? 'جاري الحجز...' : 'تأكيد الحجز - ' + totalPrice + '  ر.س' }}
+    </ion-button>
+    <div style="height:40px;"></div>
+  </div>
+</ion-content>

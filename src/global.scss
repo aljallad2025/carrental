@@ -1,0 +1,170 @@
+@import "theme/variables.scss";
+
+/* Ionic Core CSS - Required */
+@import "@ionic/angular/css/core.css";
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Ionic Optional Utilities */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/* Google Fonts - Cairo */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700&display=swap');
+
+/* ==============================
+   Global Reset & Base
+   ============================== */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  direction: ltr;
+  font-family: var(--ion-font-family);
+}
+
+/* ==============================
+   Component Overrides
+   ============================== */
+ion-card {
+  border-radius: var(--border-radius-card) !important;
+  background: var(--ion-card-background);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+ion-button {
+  border-radius: var(--border-radius-btn);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+ion-toolbar {
+  --background: var(--ion-toolbar-background);
+  --border-color: #1f2937;
+}
+
+ion-tab-bar {
+  --background: #111111;
+  --border-color: rgba(255,255,255,0.06);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+ion-tab-button {
+  --color: #71717a;
+  --color-selected: #ef4444;
+}
+
+ion-searchbar {
+  --background: #1f2937;
+  --color: #f9fafb;
+  --placeholder-color: #6b7280;
+  --icon-color: #6b7280;
+  --border-radius: 12px;
+}
+
+ion-segment {
+  --background: #1f2937;
+}
+
+ion-segment-button {
+  --color: #9ca3af;
+  --color-checked: #ef4444;
+  --indicator-color: #ef4444;
+  font-weight: 600;
+}
+
+ion-input {
+  --color: #f9fafb;
+  --placeholder-color: #6b7280;
+}
+
+ion-toggle {
+  --background: #374151;
+  --background-checked: #dc2626;
+  --handle-background: #fff;
+  --handle-background-checked: #fff;
+}
+
+/* ==============================
+   Utility Classes
+   ============================== */
+.gradient-text {
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.badge-gold {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #000;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.card-shadow {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* ==============================
+   Skeleton / Shimmer
+   ============================== */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    #1f2937 25%,
+    #374151 50%,
+    #1f2937 75%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+/* ==============================
+   Animations
+   ============================== */
+.animate-fade-in {
+  animation: fadeIn 0.35s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.35s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ==============================
+   Scrollbar Hide
+   ============================== */
+::-webkit-scrollbar { display: none; }
+* { scrollbar-width: none; -ms-overflow-style: none; }
+
+/* ==============================
+   Safe Area Fixes
+   ============================== */
+.page-content {
+  padding-bottom: calc(80px + env(safe-area-inset-bottom));
+}

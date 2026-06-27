@@ -1,0 +1,27 @@
+<ion-content [fullscreen]="true" class="onboarding-content">
+  <div class="slide-container">
+    <div class="slide animate-fade-in">
+      <div class="top-bar">
+        <div class="brand-mini"><ion-icon name="flash"></ion-icon><span>SPEED</span></div>
+        <div class="skip-btn" (click)="skip()">Skip</div>
+      </div>
+
+      <div class="hero-glow"></div>
+
+      <div class="slide-image">
+        <img [src]="slides[currentSlide].image" alt="Speed Fleet" />
+      </div>
+
+      <div class="bottom-sheet">
+        <div class="dots">
+          <span *ngFor="let s of slides; let i = index" [class.active]="i === currentSlide"></span>
+        </div>
+        <h1>{{ slides[currentSlide].title }}</h1>
+        <p>{{ slides[currentSlide].subtitle }}</p>
+        <ion-button expand="block" class="next-btn" (click)="next()">
+          {{ currentSlide < slides.length - 1 ? 'Next' : 'Get Started' }}
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

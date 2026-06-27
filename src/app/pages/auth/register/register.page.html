@@ -1,0 +1,61 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="transparent-toolbar">
+    <ion-buttons slot="start"><ion-back-button text="" defaultHref="/auth/login"></ion-back-button></ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="register-content">
+
+  <div class="hero-section">
+    <div class="hero-glow"></div>
+    <div class="logo-badge"><ion-icon name="person-add-outline"></ion-icon></div>
+  </div>
+
+  <div class="sheet">
+    <h2 class="sheet-title">Create Account</h2>
+    <p class="sheet-subtitle">Join us and start your journey with SPEED</p>
+
+    <p class="section-label">Personal Information</p>
+    <div class="input-group">
+      <ion-icon name="person-outline"></ion-icon>
+      <ion-input [(ngModel)]="fullName" placeholder="Full Name"></ion-input>
+    </div>
+    <div class="input-group">
+      <ion-icon name="mail-outline"></ion-icon>
+      <ion-input [(ngModel)]="email" type="email" placeholder="Email Address"></ion-input>
+    </div>
+    <div class="input-group">
+      <ion-icon name="phone-portrait-outline"></ion-icon>
+      <ion-input [(ngModel)]="phone" type="tel" placeholder="+973XXXXXXXX"></ion-input>
+    </div>
+
+    <p class="section-label">Password</p>
+    <div class="input-group">
+      <ion-icon name="lock-closed-outline"></ion-icon>
+      <ion-input [(ngModel)]="password" [type]="showPassword ? 'text' : 'password'" placeholder="Password"></ion-input>
+      <ion-icon [name]="showPassword ? 'eye-outline' : 'eye-off-outline'" (click)="showPassword = !showPassword" class="eye-icon"></ion-icon>
+    </div>
+    <div class="input-group">
+      <ion-icon name="lock-closed-outline"></ion-icon>
+      <ion-input [(ngModel)]="confirmPassword" [type]="showConfirmPassword ? 'text' : 'password'" placeholder="Confirm Password"></ion-input>
+      <ion-icon [name]="showConfirmPassword ? 'eye-outline' : 'eye-off-outline'" (click)="showConfirmPassword = !showConfirmPassword" class="eye-icon"></ion-icon>
+    </div>
+
+    <ion-button expand="block" (click)="register()" [disabled]="loading" class="register-btn">
+      <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+      <span *ngIf="!loading">Create Account</span>
+      <ion-icon *ngIf="!loading" name="arrow-forward-outline" slot="end"></ion-icon>
+    </ion-button>
+
+    <div class="divider"><span>OR</span></div>
+
+    <button class="guest-btn" (click)="continueAsGuest()">
+      <ion-icon name="person-outline"></ion-icon>
+      <span>Continue as Guest</span>
+    </button>
+
+    <div class="login-link">
+      Already have an account? <span (click)="goToLogin()">Sign In</span>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,8 @@
+{
+  "app": { "name": "Car Rental" },
+  "home": { "title": "الرئيسية", "greeting": "مرحباً", "search": "ابحث عن سيارة..." },
+  "cars": { "rental": "للإيجار", "sale": "للبيع", "available": "متاح", "unavailable": "محجوز" },
+  "booking": { "confirm": "تأكيد الحجز", "cancel": "إلغاء", "extend": "تمديد" },
+  "auth": { "login": "تسجيل الدخول", "register": "إنشاء حساب", "logout": "تسجيل الخروج" },
+  "common": { "loading": "جاري التحميل...", "error": "حدث خطأ", "save": "حفظ", "cancel": "إلغاء" }
+}

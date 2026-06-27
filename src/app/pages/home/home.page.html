@@ -1,0 +1,99 @@
+<ion-content [fullscreen]="true" class="home-content">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="top-bar">
+    <div class="user-block">
+      <p class="greeting">مرحباً 👋</p>
+      <h2 class="user-name">{{ isGuest ? 'Guest' : (currentUser?.full_name || 'User') }}</h2>
+    </div>
+    <button class="notif-btn" (click)="goToNotifications()">
+      <ion-icon name="notifications-outline"></ion-icon>
+      <span class="dot"></span>
+    </button>
+  </div>
+
+  <button class="search-bar" (click)="goToSearch()">
+    <ion-icon name="search-outline"></ion-icon>
+    <span>ابحث عن سيارة، ماركة، موديل...</span>
+  </button>
+
+  <!-- Featured hero strip: real cars, full-bleed image cards -->
+  <div class="hero-strip" *ngIf="!loading && featuredCars.length">
+    <div class="hero-scroll">
+      <div class="hero-card" *ngFor="let car of featuredCars.slice(0,4)" (click)="goToCar(car)">
+        <img *ngIf="hasValidImage(car)" [src]="car.image_url" [alt]="car.make + ' ' + car.model" />
+        <div *ngIf="!hasValidImage(car)" class="hero-fallback"><ion-icon name="car-sport-outline"></ion-icon></div>
+        <div class="hero-overlay"></div>
+        <span class="hero-tag">SPEED</span>
+        <div class="hero-info">
+          <h3>{{ car.make }} {{ car.model }}</h3>
+          <div class="hero-price"><span>{{ car.daily_rate }}</span> ر.س / يوم</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-strip" *ngIf="loading">
+    <div class="hero-scroll">
+      <ion-skeleton-text *ngFor="let i of [1,2]" animated class="hero-skeleton"></ion-skeleton-text>
+    </div>
+  </div>
+
+  <!-- Categories -->
+  <div class="section">
+    <h3 class="section-title">Categories</h3>
+    <div class="categories-scroll">
+      <button *ngFor="let cat of categories" class="category-chip" [class.active]="selectedCategory === cat.value" (click)="selectCategory(cat.value)">
+        <ion-icon [name]="cat.icon"></ion-icon>
+        <span>{{ cat.label }}</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Popular Cars -->
+  <div class="section">
+    <div class="section-header">
+      <h3 class="section-title">الأكثر طلباً</h3>
+      <button class="see-all" (click)="goToSearch()">عرض الكل <ion-icon name="arrow-forward-outline"></ion-icon></button>
+    </div>
+
+    <div class="car-list" *ngIf="!loading">
+      <div class="car-card" *ngFor="let car of popularCars" (click)="goToCar(car)">
+        <div class="car-thumb">
+          <img *ngIf="hasValidImage(car)" [src]="car.image_url" [alt]="car.make + ' ' + car.model" />
+          <div *ngIf="!hasValidImage(car)" class="car-fallback"><ion-icon name="car-sport-outline"></ion-icon></div>
+        </div>
+        <div class="car-body">
+          <h4>{{ car.make }} {{ car.model }}</h4>
+          <div class="car-specs">
+            <span><ion-icon name="settings-outline"></ion-icon>{{ car.transmission === 'automatic' ? 'أوتوmatic' : 'Manual' }}</span>
+            <span><ion-icon name="people-outline"></ion-icon>{{ car.seats }} seats</span>
+          </div>
+          <div class="car-footer">
+            <div class="car-price"><strong>{{ car.daily_rate }}</strong> ر.س/يوم</div>
+            <span class="car-arrow"><ion-icon name="arrow-forward-outline"></ion-icon></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="car-list" *ngIf="loading">
+      <div class="car-card skeleton" *ngFor="let i of [1,2,3]">
+        <ion-skeleton-text animated class="car-thumb-skel"></ion-skeleton-text>
+        <div class="car-body">
+          <ion-skeleton-text animated style="width: 70%; height: 16px;"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 50%; height: 12px; margin-top: 8px;"></ion-skeleton-text>
+        </div>
+      </div>
+    </div>
+
+    <div class="empty-state" *ngIf="!loading && !popularCars.length">
+      <ion-icon name="car-sport-outline"></ion-icon>
+      <p>No cars available right now</p>
+    </div>
+  </div>
+
+  <div style="height: 90px;"></div>
+</ion-content>

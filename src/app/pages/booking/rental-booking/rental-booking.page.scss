@@ -1,0 +1,100 @@
+.booking-content { --background: #0a0a0a; }
+.speed-toolbar { --background: #0a0a0a; --color: #fff; --border-color: rgba(255,255,255,0.06); }
+
+.booking-wrapper { padding: 16px 20px 0; }
+
+.car-summary {
+  display: flex; align-items: center; gap: 14px;
+  background: #141414; border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 18px; padding: 14px; margin-bottom: 18px;
+
+  .car-thumb { width: 76px; height: 64px; border-radius: 14px; overflow: hidden; flex-shrink: 0; background: #1c1c1c; }
+  .car-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .car-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; ion-icon { font-size: 28px; color: #3f3f46; } }
+
+  h3 { color: #fff; font-size: 16px; font-weight: 800; margin: 0 0 4px; }
+  p { color: #71717a; font-size: 13px; margin: 0; strong { color: #ef4444; font-size: 16px; font-weight: 900; } }
+}
+
+.section-card {
+  background: #141414; border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 18px; padding: 16px; margin-bottom: 14px;
+
+  h4 {
+    display: flex; align-items: center; gap: 8px;
+    color: #fff; font-size: 14.5px; font-weight: 800; margin: 0 0 14px;
+    ion-icon { font-size: 17px; color: #ef4444; }
+  }
+}
+
+.date-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.date-input {
+  label { display: block; color: #71717a; font-size: 11.5px; margin-bottom: 6px; }
+  input {
+    width: 100%; background: #1c1c1c; border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px; padding: 11px 12px; color: #f4f4f5; font-size: 13px;
+    color-scheme: dark;
+  }
+}
+
+.days-badge {
+  display: inline-block; margin-top: 12px; background: rgba(220,38,38,0.15);
+  color: #ef4444; font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 10px;
+}
+
+.text-input {
+  width: 100%; background: #1c1c1c; border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px; padding: 12px 14px; color: #f4f4f5; font-size: 13.5px;
+  &::placeholder { color: #52525b; }
+}
+
+.extra-item {
+  display: flex; align-items: center; gap: 10px;
+  background: #1c1c1c; border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 12px; padding: 12px; margin-bottom: 8px; cursor: pointer;
+
+  .extra-icon { font-size: 18px; color: #71717a; }
+  .extra-name { flex: 1; color: #e4e4e7; font-size: 13.5px; }
+  .extra-price { color: #71717a; font-size: 12px; }
+  .check { font-size: 19px; color: #3f3f46; }
+
+  &.selected {
+    border-color: #dc2626; background: rgba(220,38,38,0.08);
+    .extra-icon { color: #ef4444; }
+    .check { color: #ef4444; }
+  }
+}
+
+.payment-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.pay-option {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  background: #1c1c1c; border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px; padding: 12px 8px; color: #a1a1aa; font-size: 12px; font-weight: 600;
+  cursor: pointer;
+  ion-icon { font-size: 20px; color: #71717a; }
+
+  &.active {
+    border-color: #dc2626; background: rgba(220,38,38,0.1); color: #fff;
+    ion-icon { color: #ef4444; }
+  }
+}
+
+.price-summary {
+  background: #141414; border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 18px; padding: 16px; margin-bottom: 18px;
+
+  .price-row { display: flex; justify-content: space-between; color: #a1a1aa; font-size: 13px; padding: 6px 0; }
+  .price-total {
+    display: flex; justify-content: space-between; color: #fff; font-size: 16px; font-weight: 900;
+    border-top: 1px solid rgba(255,255,255,0.06); margin-top: 8px; padding-top: 12px;
+    span:last-child { color: #ef4444; }
+  }
+}
+
+.confirm-btn {
+  height: 54px; font-size: 15px; font-weight: 800;
+  --background: linear-gradient(135deg, #dc2626, #991b1b);
+  --background-activated: #7f1d1d;
+  --border-radius: 14px;
+  --box-shadow: 0 10px 26px rgba(220,38,38,0.4);
+}

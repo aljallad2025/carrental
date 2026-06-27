@@ -1,0 +1,79 @@
+<ion-content [fullscreen]="true" class="list-content">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="page-header">
+    <h1>سيارات للإيجار</h1>
+    <button class="filter-btn"><ion-icon name="filter-outline"></ion-icon></button>
+  </div>
+
+  <div class="search-bar">
+    <ion-icon name="search-outline"></ion-icon>
+    <input type="text" placeholder="ابحث عن سيارة..." [(ngModel)]="searchQuery" (input)="loadCars()" />
+  </div>
+
+  <div class="results-row" *ngIf="!loading">
+    <span class="count">{{ cars.length }} سيارة متاحة</span>
+    <div class="view-toggle">
+      <button [class.active]="viewMode==='grid'" (click)="viewMode='grid'"><ion-icon name="grid-outline"></ion-icon></button>
+      <button [class.active]="viewMode==='list'" (click)="viewMode='list'"><ion-icon name="list-outline"></ion-icon></button>
+    </div>
+  </div>
+
+  <div class="cars-grid" [class.list-mode]="viewMode==='list'" *ngIf="!loading">
+    <div class="car-card" *ngFor="let car of cars" (click)="goToCar(car)">
+      <div class="car-thumb">
+        <img *ngIf="hasValidImage(car)" [src]="car.image_url" [alt]="car.make + ' ' + car.model" />
+        <div *ngIf="!hasValidImage(car)" class="car-fallback">
+          <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="60" fill="#1f2937"/>
+            <path d="M15 42 L15 34 L28 24 L55 22 L80 22 L95 32 L105 36 L105 42 Z" fill="#374151" stroke="#0891b2" stroke-width="1.5"/>
+            <path d="M32 24 L38 18 L78 18 L86 24 Z" fill="#4b5563"/>
+            <circle cx="35" cy="42" r="8" fill="#111827" stroke="#0891b2" stroke-width="1.5"/>
+            <circle cx="35" cy="42" r="4" fill="#374151"/>
+            <circle cx="88" cy="42" r="8" fill="#111827" stroke="#0891b2" stroke-width="1.5"/>
+            <circle cx="88" cy="42" r="4" fill="#374151"/>
+            <rect x="95" y="30" width="10" height="6" rx="1" fill="#f59e0b" opacity="0.8"/>
+            <rect x="15" y="30" width="8" height="6" rx="1" fill="#ef4444" opacity="0.5"/>
+          </svg>
+        </div>
+        <button class="fav-btn" (click)="toggleFavorite(car, $event)">
+          <ion-icon [name]="isFavorite(car.id) ? 'heart' : 'heart-outline'" [class.is-fav]="isFavorite(car.id)"></ion-icon>
+        </button>
+        <span class="avail-badge" [class.unavail]="car.status !== 'available'">
+          {{ car.status === 'available' ? 'متاح' : 'محجوز' }}
+        </span>
+      </div>
+      <div class="car-body">
+        <h4>{{ car.make }} {{ car.model }}</h4>
+        <p class="car-year">{{ car.year }} · {{ car.transmission === 'automatic' ? 'أوتوماتيك' : 'يدوي' }}</p>
+        <div class="car-specs">
+          <span>👤 {{ car.seats }}</span>
+          <span>⭐ {{ car.rating || 0 }}</span>
+        </div>
+        <div class="car-footer">
+          <div class="car-price"><strong>{{ car.daily_rate }}</strong> ر.س/يوم</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Skeleton -->
+  <div class="cars-grid" *ngIf="loading">
+    <div class="car-card skeleton" *ngFor="let i of [1,2,3,4]">
+      <ion-skeleton-text animated class="car-thumb-skel"></ion-skeleton-text>
+      <div class="car-body">
+        <ion-skeleton-text animated style="width:80%;height:14px;"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width:50%;height:12px;margin-top:6px;"></ion-skeleton-text>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="!loading && !cars.length">
+    <ion-icon name="car-outline"></ion-icon>
+    <p>لا توجد سيارات متاحة</p>
+  </div>
+
+  <div style="height: 90px;"></div>
+</ion-content>
